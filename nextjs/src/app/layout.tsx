@@ -5,8 +5,8 @@ import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { MyFirebaseProvider } from "@/components/firebase-providers";
 import { Toaster } from "@/components/ui/toaster";
-import NavBarClient from "@/components/header";
-import { Footer } from "@/components/footer";
+import NavBarClient from "@/components/sections/header";
+import { Footer } from "@/components/sections/footer";
 import { ReactNode } from "react";
 
 const font = Work_Sans({ subsets: ["latin"] });

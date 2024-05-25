@@ -16,11 +16,14 @@
     "baseUrl": "src",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/sections/*": ["components/sections/*"],
       "@/lib/*": ["lib/*"],
       "@/content/*": ["content/*"],
       "@/assets/*": ["assets/*"],
       "@/app/*": ["app/*"],
       "@/styles/*": ["styles/*"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"],
 
       "contentlayer/generated": ["../.contentlayer/generated"]
     },

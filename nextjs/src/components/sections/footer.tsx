@@ -6,7 +6,7 @@ import {
   InstagramIcon,
   LinkedinIcon,
 } from "lucide-react";
-import { BreadcrumbResponsive } from "./breadcrumbs-responsive";
+import { BreadcrumbResponsive } from "../breadcrumbs-responsive";
 
 export const Footer = () => {
   const renderSocialLinks = () => (

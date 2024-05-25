@@ -1,18 +1,11 @@
 // nextjs/src/app/team/page.tsx
 import React from "react";
-import { allMembers } from "contentlayer/generated";
-import TeamCard from "@/components/team/TeamCard";
+import { allTeamMembers } from "contentlayer/generated";
+import CardWithLink from "@/sections/withLink";
+import { TeamMember } from "@/types/types";
 
-// TypeScript type for team members
-interface Member {
-  image: string;
-  name: string;
-  role: string;
-}
-
-// Fisher-Yates Shuffle Algorithm with type annotations
-const shuffleArray = (array: Member[]): Member[] => {
-  let shuffledArray = array.slice(); // Create a copy of the array
+const shuffleArray = (array: TeamMember[]): TeamMember[] => {
+  let shuffledArray = array.slice();
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
@@ -21,7 +14,7 @@ const shuffleArray = (array: Member[]): Member[] => {
 };
 
 const TeamPage = () => {
-  const shuffledMembers = shuffleArray(allMembers);
+  const shuffledMembers = shuffleArray(allTeamMembers);
 
   return (
     <div className="container mx-auto p-6 bg-gray-100">
@@ -29,12 +22,12 @@ const TeamPage = () => {
         Meet Our Team
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {shuffledMembers.map((member: Member) => (
-          <TeamCard
-            key={member.name}
-            image={member.image}
-            name={member.name}
-            role={member.role}
+        {shuffledMembers.map((member: TeamMember) => (
+          <CardWithLink
+            key={member._id}
+            team={member}
+            overview={true}
+            type="team"
           />
         ))}
       </div>
