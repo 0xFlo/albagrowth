@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "albagrowth"
+version = "0.1.0"
+description = ""
+authors = ["0xFlo <floriankluge@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+bertopic = "^0.16.2"
+scikit-learn = "^1.5.0"
+
+[tool.poetry.group.dev.dependencies]
+scikit-learn = "^1.5.0"
+pandas = "^2.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

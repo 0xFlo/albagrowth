@@ -1,0 +1,8 @@
+# Modules, dependencies, and other libraries
+node_modules
+
+# Build files
+dist
+
+# Code coverage
+coverage
