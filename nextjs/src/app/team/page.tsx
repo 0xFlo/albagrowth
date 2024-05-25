@@ -1,68 +1,37 @@
+// nextjs/src/app/team/page.tsx
 import React from "react";
-import TeamCard from "@/components/TeamCard";
+import { allMembers } from "contentlayer/generated";
+import TeamCard from "@/components/team/TeamCard";
 
-const teamMembers = [
-  {
-    image: "/path/to/image1.jpg",
-    name: "Macs",
-    role: "Role",
-  },
-  {
-    image: "/path/to/image2.jpg",
-    name: "Shanik",
-    role: "Role",
-  },
-  {
-    image: "/path/to/image3.jpg",
-    name: "Andrew",
-    role: "Operations",
-  },
-  {
-    image: "/path/to/image4.jpg",
-    name: "Oksana",
-    role: "Role",
-  },
-  {
-    image: "/path/to/image5.jpg",
-    name: "Florian S. Kluge",
-    role: "tech SEO",
-  },
-  {
-    image: "/path/to/image6.jpg",
-    name: "Tash",
-    role: "Swiss Army Knife",
-  },
-  {
-    image: "/path/to/image7.jpg",
-    name: "Antonio",
-    role: "Role",
-  },
-  {
-    image: "/path/to/image8.jpg",
-    name: "Simone Timen",
-    role: "Freelance Editor for Insight Timer Content",
-  },
-  {
-    image: "/path/to/image9.jpg",
-    name: "nik",
-    role: "Role",
-  },
-  {
-    image: "/path/to/image10.jpg",
-    name: "Kim T.",
-    role: "Head of Content",
-  },
-  // Add more team members as needed
-];
+// TypeScript type for team members
+interface Member {
+  image: string;
+  name: string;
+  role: string;
+}
+
+// Fisher-Yates Shuffle Algorithm with type annotations
+const shuffleArray = (array: Member[]): Member[] => {
+  let shuffledArray = array.slice(); // Create a copy of the array
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
 
 const TeamPage = () => {
+  const shuffledMembers = shuffleArray(allMembers);
+
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Meet Our Team</h1>
+    <div className="container mx-auto p-6 bg-gray-100">
+      <h1 className="text-4xl font-extrabold mb-6 text-center bg-blue-500 text-white p-4 border-4 border-black">
+        Meet Our Team
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {teamMembers.map((member, index) => (
+        {shuffledMembers.map((member: Member) => (
           <TeamCard
-            key={index}
+            key={member.name}
             image={member.image}
             name={member.name}
             role={member.role}

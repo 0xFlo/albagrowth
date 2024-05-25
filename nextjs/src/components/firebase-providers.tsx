@@ -1,5 +1,5 @@
+// nextjs/src/components/firebase-providers.tsx
 "use client";
-
 import { FC, ReactNode, useMemo } from "react";
 import {
   AnalyticsProvider,
