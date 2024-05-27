@@ -14,15 +14,34 @@ const CardImage = ({ src, alt }: { src: string; alt: string }) => (
   </div>
 );
 
-const CardInfo = ({ name, role }: { name: string; role: string }) => (
+const CardInfo = ({
+  name,
+  role,
+  profileHref,
+}: {
+  name: string;
+  role: string;
+  profileHref?: string;
+}) => (
   <div className="mt-4 text-center">
-    <h3 className="text-xl font-extrabold m-1">{name}</h3>
+    <h3 className="text-xl font-extrabold m-1">
+      {profileHref ? (
+        <Link
+          href={profileHref}
+          className="hover:underline text-black no-underline"
+        >
+          {name}
+        </Link>
+      ) : (
+        name
+      )}
+    </h3>
     <p className="text-base m-1">{role}</p>
   </div>
 );
 
 const TeamCard = React.forwardRef<HTMLDivElement, TeamMemberProps>(
-  ({ member, href }, ref) => {
+  ({ member, href, profileHref }, ref) => {
     const cardContent = (
       <div
         ref={ref}
@@ -32,7 +51,11 @@ const TeamCard = React.forwardRef<HTMLDivElement, TeamMemberProps>(
         )}
       >
         <CardImage src={member.image} alt={`${member.name} photo`} />
-        <CardInfo name={member.name} role={member.role} />
+        <CardInfo
+          name={member.name}
+          role={member.role}
+          profileHref={profileHref}
+        />
       </div>
     );
 

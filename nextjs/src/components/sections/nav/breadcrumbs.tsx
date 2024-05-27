@@ -8,7 +8,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "./ui/breadcrumb";
+} from "../../ui/breadcrumb";
 
 interface BreadcrumbItem {
   href: string;
@@ -74,8 +74,8 @@ export function BreadcrumbResponsive() {
   }
 
   return (
-    <Breadcrumb>
-      <BreadcrumbList>
+    <Breadcrumb className="bg-white p-2 shadow-lg">
+      <BreadcrumbList className="flex space-x-2 text-black font-bold">
         {breadcrumbItems.map((item, index) => (
           <React.Fragment key={index}>
             <BreadcrumbItemComponent>
@@ -84,15 +84,20 @@ export function BreadcrumbResponsive() {
                 aria-current={
                   index === breadcrumbItems.length - 1 ? "page" : undefined
                 }
+                className="text-black hover:underline"
               >
                 {item.label === "Home" ? (
-                  <HomeIcon className="h-3.5 w-3.5" />
+                  <HomeIcon className="h-5 w-5" />
                 ) : (
                   item.label
                 )}
               </BreadcrumbLink>
             </BreadcrumbItemComponent>
-            {index !== breadcrumbItems.length - 1 && <BreadcrumbSeparator />}
+            {index !== breadcrumbItems.length - 1 && (
+              <BreadcrumbSeparator className="text-black">
+                /
+              </BreadcrumbSeparator>
+            )}
           </React.Fragment>
         ))}
       </BreadcrumbList>

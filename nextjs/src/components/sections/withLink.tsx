@@ -5,6 +5,10 @@ import TeamCard from "@/sections/team/TeamCard";
 import CaseStudyCard from "@/sections/case-studies/CaseStudyCard";
 import { generateHref } from "@/utils/url";
 
+const generateProfileHref = (flattenedPath: string, type: string): string => {
+  return `/${flattenedPath}`;
+};
+
 const CardWithLink = ({
   team,
   caseStudy,
@@ -18,12 +22,17 @@ const CardWithLink = ({
   }
 
   const href = generateHref(item._raw.flattenedPath, overview, type);
+  const profileHref = generateProfileHref(item._raw.flattenedPath, type);
 
-  return type === "team" && team ? (
-    <TeamCard member={team} href={href} />
-  ) : type === "case-studies" && caseStudy ? (
-    <CaseStudyCard caseStudy={caseStudy} href={href} />
-  ) : null;
+  if (type === "team" && team) {
+    return <TeamCard member={team} href={href} profileHref={profileHref} />;
+  }
+
+  if (type === "case-studies" && caseStudy) {
+    return <CaseStudyCard caseStudy={caseStudy} href={href} />;
+  }
+
+  return null;
 };
 
 export default CardWithLink;

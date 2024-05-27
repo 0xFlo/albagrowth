@@ -1,21 +1,15 @@
-// components/Navigation.tsx
+// nextjs/src/components/BurgerMenu.tsx
 "use client";
 
 import { useEffect } from "react";
+import { navbarLinks } from "@/components/sections/nav/navigationLinks";
 
-interface MobileNavProps {
+interface BurgerMenuProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const links = [
-  { name: "Home", url: "/" },
-  { name: "Case Studies", url: "case-studies/" },
-  { name: "Team", url: "team/" },
-  // Add more links here as needed
-];
-
-function MobileNav({ open, setOpen }: MobileNavProps) {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ open, setOpen }) => {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -24,7 +18,32 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
   }, [open]);
 
   return (
-    <div style={{ overflowX: "hidden", width: "100vw" }}>
+    <>
+      <div
+        className="group z-50 relative flex items-center cursor-pointer ml-auto"
+        onClick={() => setOpen(!open)}
+      >
+        <div className="flex items-center border border-black rounded-md p-2 shadow-custom">
+          <span className="text-lg font-medium mr-2">Menu</span>
+          <div className="flex flex-col items-end justify-between w-6 h-4">
+            <span
+              className={`h-0.5 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
+                open ? "rotate-45 translate-y-1.5" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full bg-black rounded-lg transition-all duration-300 ease-in-out ${
+                open ? "w-0" : "w-full"
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
+                open ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
+            />
+          </div>
+        </div>
+      </div>
       <div
         className={`absolute top-0 left-0 w-full bg-gradient-to-br from-yellow-400 to-red-500 transform ${
           open ? "translate-x-0" : "-translate-x-full"
@@ -35,7 +54,7 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
           className="flex flex-col justify-center items-center"
           style={{ height: "100%" }}
         >
-          {links.map((link) => (
+          {navbarLinks.map((link) => (
             <a
               key={link.name}
               className="text-2xl font-bold my-4 hover:text-red-500"
@@ -47,7 +66,6 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
           ))}
         </div>
       </div>
-      {/* Secondary Menu */}
       <div
         className={`fixed bottom-0 right-0 w-full bg-blue-500 transform ${
           open ? "translate-x-0" : "translate-x-full"
@@ -67,8 +85,13 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
           </a>
         </div>
       </div>
-    </div>
+      <style jsx>{`
+        .shadow-custom {
+          box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.75);
+        }
+      `}</style>
+    </>
   );
-}
+};
 
-export default MobileNav;
+export default BurgerMenu;

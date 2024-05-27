@@ -4,7 +4,7 @@ import {
   makeSource,
   FieldDefs,
 } from "contentlayer/source-files";
-import { cleanSlug } from "./src/utils/url"; // Use relative path
+import { cleanSlug } from "./src/utils/url"; // keep using relative path
 
 const resolveUrl = (doc: any, type: "case-studies" | "team"): string =>
   `/${cleanSlug(doc._raw.flattenedPath, type)}`;

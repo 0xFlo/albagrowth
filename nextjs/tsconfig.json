@@ -20,6 +20,8 @@
       "@/lib/*": ["lib/*"],
       "@/content/*": ["content/*"],
       "@/assets/*": ["assets/*"],
+      "@/constants/*": ["constants/*"],
+
       "@/app/*": ["app/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],

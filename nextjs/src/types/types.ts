@@ -1,5 +1,4 @@
-// src/types/types.ts
-
+// nextjs/src/types/types.ts
 export interface CaseStudy {
   _id: string;
   _raw: {
@@ -24,6 +23,7 @@ export interface TeamMember {
 export interface TeamMemberProps {
   member: TeamMember;
   href?: string;
+  profileHref?: string; // Add profileHref property
 }
 
 export interface CaseStudyCardProps {
